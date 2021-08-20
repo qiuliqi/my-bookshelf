@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="mulu">
+        <h2>{{ book_id }} - 在线目录 ↓</h2>
+    <div class="audi">
+        <ul>
+            {% for page_num in page_nums %}
+                <li>
+                    <a href="/{{ book_id }}/{{ page_num }}" title="{{ book_id }}阅读" target="_blank">第{{ page_num }}部分阅读</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

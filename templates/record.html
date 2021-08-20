@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>正在阅读{{ zj_ids|length }}本小说</p>
+<ul class="movie-list">
+    {% for zj_id in zj_ids %}
+    <li>{{ zj_id.bookname }} - 第{{ zj_id.zjid }}部分
+        <span class="float-right">
+            <a class="imdb" href="/{{ zj_id.bookname }}/{{ zj_id.zjid }}" target="_blank">继续阅读</a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

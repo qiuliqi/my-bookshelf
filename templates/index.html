@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- 插入到页面标题上方 -->
+{% for message in get_flashed_messages() %}
+    <div class="alert">{{ message }}</div>
+{% endfor %}
+<p>已收入{{ book_lists|length }}本小说</p>
+<ul class="movie-list">
+    {% for book_list in book_lists %}
+    <li>{{ book_list}}
+        <span class="float-right">
+            <a class="btn" href="/book/{{ book_list }}" target="_blank">目录</a>
+            <a class="imdb" href="/{{ book_list }}/1" target="_blank" title="小说阅读">阅读</a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+<center><p>留言板</p></center>
+<ul class="movie-list">
+    {% for ly_list in ly_lists %}
+    <li>{{ ly_list.content }}
+        <span class="float-right">
+            <!-- 登录视图保护 -->
+            {% if current_user.id == 1 %}
+            <form class="inline-form" method="post" action="{{ url_for('delete', movie_id=ly_list.id) }}">
+                <input class="btn" type="submit" name="delete" value="删除" onclick="return confirm('你确定删除吗?')">
+            </form>
+            {% endif %}
+            <a class="imdb">{{ ly_list.name }}</a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+<form method="post">
+    留言 <input type="text" name="content" autocomplete="off" required>
+    {% if current_user.is_authenticated %}
+    昵称 <input type="text" name="name" autocomplete="off" required value="{{ current_user.username }}">
+    {% else %}
+    昵称 <input type="text" name="name" autocomplete="off" required>
+    {% endif %}
+    <input class="btn" type="submit" name="submit" value="提交">
+</form>
+{% endblock %}

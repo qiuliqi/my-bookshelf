@@ -1,0 +1,6 @@
+创建数据库表：flask initdb
+删除表后重新创建：flask initdb --drop
+创建管理员账户：flask admin
+后台运行: nohup python3  -u app.py > test.log 2>&1 &
+查看后台运行的所有python 进程：ps aux |grep python
+删除进程: kill -9  [进程id]

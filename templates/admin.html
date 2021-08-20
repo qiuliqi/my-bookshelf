@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- 插入到页面标题上方 -->
+{% for message in get_flashed_messages() %}
+    <div class="alert">{{ message }}</div>
+{% endfor %}
+<p>正式会员{{ admins|length }}个</p>
+<ul class="movie-list">
+    {% for admin in admins %}
+    <li>{{ admin.id }}.{{ admin.username }}
+        <span class="float-right">
+            {% if admin.id != 1 %}
+            <form class="inline-form" method="post" action="{{ url_for('admindelete', admin_id=admin.id) }}">
+                <input class="btn" type="submit" name="delete" value="删除" onclick="return confirm('你确定删除吗?')">
+            </form>
+            {% else %}
+            <a class="imdb">管理员</a>
+            {% endif %}
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

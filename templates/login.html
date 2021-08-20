@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>登录</h3>
+<!-- 插入到页面标题上方 -->
+{% for message in get_flashed_messages() %}
+    <div class="alert">{{ message }}</div>
+{% endfor %}
+<form method="post">
+    用户名<br>
+    <input type="text" name="username" required><br><br>
+    密码<br>
+    <!-- 密码输入框的 type 属性使用 password，会将输入值显示为圆点 -->
+    <input type="password" name="password" required><br><br>
+    <input class="btn" type="submit" name="submit" value="登录">
+    <a class="btn" href="/signup">注册</a>
+</form>
+{% endblock %}

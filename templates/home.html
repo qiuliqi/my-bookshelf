@@ -1,0 +1,29 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  {% if book_id %}
+        <title>小秋秋阅读-{{ book_id }}</title>
+        {% else %}
+        <title>欢迎来到小秋秋阅读!</title>
+        {% endif %}
+    <link rel="icon" href="{{ url_for('static', filename='xqq.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+</head>
+<body style="background:url(https://api.qiuliqi.top/tp/tuc/basic_bg.edf95.png);">
+    <div class="mc" style="margin:20;">
+        <h1>{{ book_id }}-第{{ movie_id }}部分</h1>
+    <div class="mcc">
+        {% for content in contents %}
+        <p>{{ content }}</p>
+        {% endfor %}
+    </div>
+    </div>
+    <div class="rpage">
+        <a href="/{{ book_id }}/{{ movie_id + 1 }}">下一页</a>
+    </div>
+    <div class="rf">
+        @ 2021 小秋秋
+    </div>
+
+</body>
+</html>
